@@ -28,9 +28,10 @@ fetchanything <URL> [options]
 
 ### Options
 
-- `--level LEVEL`: Maximum crawl depth (default: 2)
-- `--filter PATTERN`: File pattern to match (e.g., "*.pdf", "*.jpg")
-- `--out DIRECTORY`: Output directory (default: downloads)
+- `-l, --level LEVEL`: Maximum crawl depth (default: 2)
+- `-f, --filter PATTERN`: File pattern to match (e.g., "*.pdf", "*.jpg")
+- `-u, --url-pattern PATTERN`: Regex pattern to match URLs for crawling (e.g., ".*/blog/.*")
+- `-o, --out DIRECTORY`: Output directory (default: downloads)
 - `-v, --verbose`: Enable verbose output
 
 ### Examples
@@ -50,10 +51,21 @@ fetchanything https://example.com --level 1 --out downloads
 fetchanything https://example.com --filter "*.jpg" -v
 ```
 
+4. Download PDFs only from blog pages:
+```bash
+fetchanything https://example.com --filter "*.pdf" --url-pattern ".*/blog/.*"
+```
+
+5. Download files only from specific subdomain:
+```bash
+fetchanything https://example.com --url-pattern "https://docs\\.example\\.com/.*"
+```
+
 ## Features
 
 - Recursive website crawling with depth control
 - File pattern matching
+- URL pattern filtering
 - Progress tracking with tqdm
 - Verbose logging option
 - Persistent HTTP sessions
